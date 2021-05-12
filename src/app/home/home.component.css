@@ -1,0 +1,25 @@
+select::after{
+    padding: 10px;
+}
+
+.card {
+    background: #f1f2f3;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+  }
+
+
+  @media only screen and (max-width: 567px) {
+    .MobileMarginTop{
+        margin-top: 20px!important;
+    }
+    .MobilePadding{
+        padding: 0px!important;
+    }
+    .MobileFloatRight{
+        float: right!important;
+    }
+    .MobilePaddingLeft{
+        padding-left: 0px!important;
+    }
+}

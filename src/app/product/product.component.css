@@ -1,0 +1,20 @@
+
+
+.lightgrayborder{
+    border: solid 1px lightgray;
+}
+.redborder{
+    border: solid 1px red
+}
+
+
+@media only screen and (max-width: 567px) {
+    .MobileMarginTop{
+        margin-top: 20px!important;
+    }
+    .MobileButtonWidth{
+        width: 30%!important;
+        margin: 5px!important;
+        padding: 10px!important;
+    }
+}

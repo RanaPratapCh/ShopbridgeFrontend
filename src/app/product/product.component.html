@@ -1,0 +1,66 @@
+<div class="container-fluid">
+    
+    <div class="container-fluid" style="padding: 0px;">
+        <div class="col-lg-12 col-xs-12" style="margin-top: 30px;">
+            <div class="col-lg-3 col-xs-3 ">
+              <span style="font-weight: bold;
+              font-size: 40px;
+              font-family: fantasy;">Shop Bridge</span>
+            </div>
+
+          </div>
+        <div class="col-lg-12 col-xs-12" style="margin-top:50px">
+            <div *ngIf="!ProductNeedToUpdate">
+                <span style="font-size:20px;margin: 15px;display: inline-block;font-weight: bold;">
+                    Add product to the Inventory</span>
+            </div>
+            <div *ngIf="ProductNeedToUpdate">
+                <span style="font-size:20px;margin: 15px;display: inline-block;font-weight: bold;">
+                    Edit the product in the Inventory</span>
+            </div>
+            <div class="col-lg-4 col-xs-12 MobileMarginTop">
+                <input (paste)="PastpreventingQuotes($event)" (keypress)="preventingQuotes($event)" [(ngModel)]="ProductName" placeholder="Product name..." type="text" [ngClass]="ProductNameErr?'redborder':'lightgrayborder'"
+                    style="width: 100%;outline: none;height: 40px;padding: 10px;">
+            </div>
+            <div class="col-lg-4 col-xs-12 MobileMarginTop">
+                <input  (paste)="PsateOnlyNumbers($event)" (keypress)="_keyPressAmount($event)" [(ngModel)]="ProductCost" placeholder="Product cost..." type="text" [ngClass]="ProductCostErr?'redborder':'lightgrayborder'"
+                    style="width: 100%;outline: none;height: 40px;padding: 10px;">
+            </div>
+            <div class="MobileMarginTop col-lg-4 col-xs-12">
+                <input  (paste)="PastpreventingQuotes($event)" (keypress)="preventingQuotes($event)" [(ngModel)]="ProductType" placeholder="Product type..." type="text"  [ngClass]="ProductTypeErr?'redborder':'lightgrayborder'"
+                    style="width: 100%;outline: none;height: 40px;padding: 10px;">
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12" style="margin-top:20px">
+            <div class="col-lg-12 col-xs-12">
+                <textarea (paste)="PastpreventingQuotes($event)" (keypress)="preventingQuotes($event)" [(ngModel)]="ProductDescription"  [ngClass]="ProductDescriptionErr?'redborder':'lightgrayborder'"
+                    style="padding: 10px;width: 100%;outline: none;height: 120px;"
+                    placeholder="Product description..."></textarea>
+            </div>
+        </div>
+        <div class="col-lg-12 col-xs-12" style="margin-top:40px">
+            <div>
+                <span class="MobileButtonWidth" *ngIf="ProductNeedToUpdate" (click)="UpdateProductToInventory()"
+                    style="cursor: pointer; display: inline-block;float: right; padding: 15px;padding-left: 30px;padding-right: 30px;background: #00c0ff;color: white;margin: 15px;width: 10%;
+                    text-align: center;">
+                    Submit
+                </span>
+                <span class="MobileButtonWidth" *ngIf="!ProductNeedToUpdate" (click)="AddProductToInventory()"
+                style="cursor: pointer; display: inline-block;float: right; padding: 15px;padding-left: 30px;padding-right: 30px;background: #00c0ff;color: white;margin: 15px;width: 10%;
+                text-align: center;">
+                Submit
+                </span>
+                <span class="MobileButtonWidth" (click)="Goback()"
+                    style="cursor: pointer; display: inline-block;float: right; padding: 15px;padding-left: 30px;padding-right: 30px;background: black;color: white;margin: 15px;width: 10%;
+                    text-align: center;">
+                    Cancel
+                </span>
+                <span class="MobileButtonWidth" (click)="Clear()"
+                style="cursor: pointer; display: inline-block;float: right; padding: 15px;padding-left: 30px;padding-right: 30px;background: green;color: white;margin: 15px;width: 10%;
+                text-align: center;">
+                Clear
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

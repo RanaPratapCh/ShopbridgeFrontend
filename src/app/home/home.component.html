@@ -1,0 +1,128 @@
+<div class="container-fluid">
+  
+    <div class="container-fluid" style="padding: 0px;">
+      <div class="col-lg-12 col-xs-12" style="margin-top: 30px;">
+        <div class="col-lg-3 col-xs-12 ">
+          <span style="font-weight: bold;
+          font-size: 40px;
+          font-family: fantasy;">Shop Bridge</span>
+        </div>
+        <div class="col-lg-7 col-xs-12 MobileMarginTop" style="padding-left: 0px;">
+          <div style="margin-top: 10px;">
+            <div class="col-lg-4 col-lg-12 MobileMarginTop" style="padding-left: 0px;">
+              <select name="Months" id="MonthsId" [(ngModel)]="FilterByType"
+                style="outline: none; letter-spacing: 1px;width: 100%;height: 40px;
+                font-size: 15px;border: solid 1px lightgrey;border-radius: 50px;padding: 10px;">
+                <option *ngFor="let data of FilterData" value="{{data}}">{{data}}</option>
+          
+              </select>
+            </div>
+            <div class="col-lg-8 col-xs-12 MobileMarginTop MobilePaddingLeft">
+              <div style="border-radius: 50px;border: solid 1px lightgray">
+                <div style="margin:8px">
+                  <input [(ngModel)]="SerchByName" id="SearchInputId" placeholder="Search by using name..." type="text" style="border: 0px;width: 80%;outline: none;">
+                  <i class="fa fa-search " aria-hidden="true" style="float: right;margin-top: 3px;margin-right: 10px;"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-xs-12 MobileMarginTop">
+          <div style="text-align: center;margin-top: 20px;" class="MobileFloatRight">
+            <span style="cursor: pointer;" (click)="AddProduct()"><span class="glyphicon glyphicon-plus" style="font-size: 12px;"></span>
+            <span> Add Product</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="TotalData?.length == 0" class="row" align="center" style="clear: both;">
+        <h3 class="DataUnAvailableHistory" style="clear:both;font-family: 'Raleway', sans-serif;padding: 0px 0px 0px 0px;margin-left:0px;padding-bottom:0px;font-weight:200;font-size: 35px;
+        padding-top:0px;margin-top:20%;margin-bottom:10px;padding:10px;">No Payment history Available</h3>
+      </div>
+
+      <div *ngIf="ErrorFetchingDetails" class="container-fluid whiteborder"  align="center"
+      style="background:#fbe9e7;min-height:100px;padding:40px;margin-top:200px;display:block;padding:0px;clear: both;">
+      <span class="glyphicon glyphicon-warning-sign" style="padding-right:10px;display:inline-block;margin-top:35px;"></span>
+      <span style="display:inline-block;">Sorry Some Error Occured, Please 
+        <span (click)="GetAllProducts()" style="cursor:pointer;color: #00c0ff;">try again...</span>
+      </span>
+    </div>
+  
+      <div *ngIf="TotalData?.length > 0 && !ErrorFetchingDetails" class="col-lg-12 col-xs-12 MobilePadding" style="margin-top: 50px;margin-bottom: 50px;">
+        <div class="col-lg-10 col-xs-12 MobilePadding">
+          <div class="col-lg-12 col-xs-12 MobilePadding" style="padding: 0px;margin-bottom: 10px;">
+            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1">
+              <div>
+                <span style="word-break: break-all;font-size: 15px;font-weight: bold;">S No</span>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+              <div>
+                <span style="word-break: break-all;font-size: 15px;font-weight: bold;">Name</span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+              <div>
+                <span style="word-break: break-all;font-size: 15px;font-weight: bold;">Cost</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+              <div>
+                <span style="word-break: break-all;font-size: 15px;font-weight: bold;">Description</span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-md-2 col-xs-2">
+              <div>
+                <span style="word-break: break-all;font-size: 15px;font-weight: bold;">Manage</span>
+              </div>
+            </div>
+          </div>
+        
+          <div *ngFor="let data of TotalData |searchName:SerchByName |filterType:FilterByType;let i=index" class="col-lg-12 col-xs-12 card MobilePadding" style="margin-top: 10px;margin-bottom: 2px;padding: 0px;">
+            <div class="col-lg-1 col-sm-1 col-md-1 col-xs-1">
+              <div>
+                <span
+                  style="word-break: break-all;font-size: 15px;margin-top: 20px;margin-bottom: 20px;display:inline-block">{{i+1}}</span>
+              </div>
+            </div>
+            <div class="col-lg-3 col-sm-3 col-md-3 col-xs-3">
+              <div>
+                <span
+                  style="word-break: break-all;font-size: 15px;margin-top: 20px;margin-bottom: 20px;display:inline-block">{{data.prodName}}</span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-md-3 col-xs-2">
+              <div>
+                <span
+                  style="word-break: break-all;font-size: 15px;margin-top: 20px;margin-bottom: 20px;display:inline-block">{{data.prodPrice}}</span>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+              <div>
+                <span
+                  style="word-break: break-all;font-size: 15px;margin-top: 20px;margin-bottom: 20px;display:inline-block">{{data.prodDescription}}</span>
+              </div>
+            </div>
+            <div class="col-lg-2 col-sm-2 col-md-3 col-xs-2">
+              <div>
+                <span
+                  style="word-break: break-all;font-size: 15px;margin-top: 20px;margin-bottom: 20px;display:inline-block">
+                  <span (click)="GotoUpdateTheProduct(data)" style="margin-right: 30px;cursor: pointer;" class="glyphicon glyphicon-edit"></span>
+                  <span (click)="GotoDeleteTheProduct(data)" style="cursor: pointer;" class="glyphicon glyphicon-trash"></span>
+                </span>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <div class="col-lg-2 col-xs-12 MobileMarginTop MobilePadding">
+          <div><span style="display: inline-block;font-weight: bold;font-size: 15px;">Overview</span></div>
+          <div><span style="display: inline-block;margin-top: 20px;">Total Products</span></div>
+          <div style="text-align: center;"><span style="display: inline-block;margin-top: 20px;font-size: 40px;">{{TotalProducts}}</span></div>
+          <div><span style="display: inline-block;margin-top: 20px;">Total Products Cost</span></div>
+          <div style="text-align: center;"><span style="display: inline-block;margin-top: 20px;font-size: 40px;">{{TotalProductsCost}}/-</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
